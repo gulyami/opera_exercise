@@ -3,6 +3,7 @@ package com.opera.configuration;
 import com.opera.appstore.common.WebDriverService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -18,6 +19,7 @@ import java.lang.reflect.Method;
  * Time: 15:29
  * To change this template use File | Settings | File Templates.
  */
+@Component
 @ContextConfiguration(locations = {"classpath:context.xml"})
 public class BaseTest extends AbstractTestNGSpringContextTests {
 

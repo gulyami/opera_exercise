@@ -53,7 +53,6 @@ public class WebDriverService {
         } else {
             //todo configure driver
             driver = new HtmlUnitDriver();
-            driver.manage().window().maximize();
             return driver;
         }
 
