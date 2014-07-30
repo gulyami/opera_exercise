@@ -1,4 +1,4 @@
-package com.opera.test.common;
+package com.opera.appstore.common;
 
 /**
  * Created with IntelliJ IDEA.

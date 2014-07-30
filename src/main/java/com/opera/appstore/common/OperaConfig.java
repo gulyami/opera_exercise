@@ -1,4 +1,4 @@
-package com.opera.test.common;
+package com.opera.appstore.common;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -7,8 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 /**

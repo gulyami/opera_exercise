@@ -1,14 +1,13 @@
-package com.opera.test.pages;
+package com.opera.appstore.pages;
 
-import com.opera.test.common.OperaConfig;
-import com.opera.test.pages.constants.AppOperaLoginPageConstants;
-import com.opera.test.pages.constants.ManageProductsPageConstants;
+import com.opera.appstore.common.OperaConfig;
+import com.opera.appstore.pages.constants.AppOperaLoginPageConstants;
+import com.opera.appstore.pages.constants.ManageProductsPageConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,8 +17,6 @@ import org.openqa.selenium.support.PageFactory;
  * To change this template use File | Settings | File Templates.
  */
 public class AppOperaLoginPage extends BasePage {
-
-    private WebDriver driver;
 
     @FindBy(how = How.XPATH, xpath = AppOperaLoginPageConstants.LOGIN_INPUT_BOX)
     private WebElement loginInputBox;
@@ -38,8 +35,7 @@ public class AppOperaLoginPage extends BasePage {
 
 
     public AppOperaLoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public void inputLogin(String login) {

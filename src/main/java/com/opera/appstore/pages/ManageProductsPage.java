@@ -1,26 +1,24 @@
-package com.opera.test.pages;
+package com.opera.appstore.pages;
 
-import com.opera.test.common.StaticData;
-import com.opera.test.pages.constants.ManageProductsPageConstants;
+import com.opera.appstore.common.StaticData;
+import com.opera.appstore.pages.constants.ManageProductsPageConstants;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.opera.test.common.CommonMethods.getRandomString;
-import static com.opera.test.common.CommonMethods.getRandomValueFromList;
-import static com.opera.test.common.StaticData.InstallerTypeValues.DEVICE_INSTALLER;
-import static com.opera.test.common.StaticData.PlatformValues.ANDROID;
-import static com.opera.test.common.StaticData.TypeValues.FREEWARE;
-import static com.opera.test.common.StaticData.VersionsValues;
-import static com.opera.test.common.StaticData.VersionsValues.*;
+import static com.opera.appstore.common.CommonMethods.getRandomString;
+import static com.opera.appstore.common.CommonMethods.getRandomValueFromList;
+import static com.opera.appstore.common.StaticData.InstallerTypeValues.DEVICE_INSTALLER;
+import static com.opera.appstore.common.StaticData.PlatformValues.ANDROID;
+import static com.opera.appstore.common.StaticData.TypeValues.FREEWARE;
+import static com.opera.appstore.common.StaticData.VersionsValues.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,8 +29,6 @@ import static com.opera.test.common.StaticData.VersionsValues.*;
  */
 public class ManageProductsPage extends BasePage {
     private static Logger logger = Logger.getLogger(ManageProductsPage.class);
-
-    private WebDriver driver;
 
     @FindBy(how = How.XPATH, xpath = ManageProductsPageConstants.MESSAGE)
     private WebElement successMessage;
@@ -87,8 +83,7 @@ public class ManageProductsPage extends BasePage {
 
 
     public ManageProductsPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public void uploadFiles(List<File> filesToUpload, WebElement webElement, StaticData.UploadType uploadType) {

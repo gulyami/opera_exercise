@@ -1,4 +1,4 @@
-package com.opera.test.common;
+package com.opera.appstore.common;
 
 import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.opera.test.common.CommonMethods.getRandomString;
-import static com.opera.test.common.CommonMethods.getRandomValueFromList;
+import static com.opera.appstore.common.CommonMethods.getRandomString;
 
 /**
  * Created with IntelliJ IDEA.

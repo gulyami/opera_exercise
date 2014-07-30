@@ -1,18 +1,16 @@
-package com.opera.test.pages;
+package com.opera.appstore.pages;
 
-import com.opera.test.common.StaticData;
-import com.opera.test.common.WebDriverService;
+import com.opera.appstore.common.StaticData;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +23,16 @@ import java.util.List;
  */
 public class BasePage {
 
+    protected WebDriver driver;
+
     private final Logger logger = Logger.getLogger(BasePage.class);
 
     public BasePage() {
+    }
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void clickOn(WebElement webElement) {

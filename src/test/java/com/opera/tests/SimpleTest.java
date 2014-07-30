@@ -1,14 +1,17 @@
-import com.opera.test.common.FilesHandler;
-import com.opera.test.common.OperaConfig;
-import com.opera.test.common.StaticData;
-import com.opera.test.pages.AppOperaLoginPage;
-import com.opera.test.pages.ManageProductsPage;
+package com.opera.tests;
+
+import com.opera.appstore.common.FilesHandler;
+import com.opera.appstore.common.StaticData;
+import com.opera.appstore.pages.ManageProductsPage;
+import com.opera.configuration.BaseTest;
+import com.opera.appstore.common.OperaConfig;
+import com.opera.appstore.pages.AppOperaLoginPage;
 import org.testng.annotations.Test;
 
 import java.io.File;
 
-import static com.opera.test.common.FilesHandler.getAllFilesFromFolder;
-import static com.opera.test.common.FilesHandler.getOneFileFromList;
+import static com.opera.appstore.common.FilesHandler.getAllFilesFromFolder;
+import static com.opera.appstore.common.FilesHandler.getOneFileFromList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -50,7 +53,7 @@ public class SimpleTest extends BaseTest {
         //resize uploaded images to thumbnails (preffered sixe 512x512)
         FilesHandler.transformImages(new File(OperaConfig.IMAGES), 512, 512);
 
-        //upload generated thumbnails .. here I've got a little miss understanding. I've thought that thumbnail can be loaded in the same way as
+        //upload generated thumbnails .. here I've got a little miss understanding. I've thought that thumbnail can be loaded in the same way as images
         manageProductsPage.uploadFiles(
                 getOneFileFromList(getAllFilesFromFolder(new File(OperaConfig.THUMBNAILS))), manageProductsPage
                 .getUploadThumbnails(), StaticData.UploadType.THUMBNAIL);
@@ -71,7 +74,6 @@ public class SimpleTest extends BaseTest {
 
         //go to ManageProducts form
         manageProductsPage.clickOnManageProductsLink();
-
 
     }
 }

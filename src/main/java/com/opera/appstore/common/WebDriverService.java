@@ -1,6 +1,7 @@
-package com.opera.test.common;
+package com.opera.appstore.common;
 
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -11,7 +12,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +22,8 @@ import java.util.List;
  */
 @Component
 public class WebDriverService {
+
+    private static Logger logger = Logger.getLogger(WebDriverService.class);
 
     private WebDriver driver;
 
@@ -66,5 +68,12 @@ public class WebDriverService {
         return this.driver;
     }
 
+    public void closeDriver() {
+        try {
+            this.driver.close();
+        } catch (Exception e) {
+            logger.info("Some problems were occurred during web driver closing");
+        }
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.opera.test.pages.constants;
+package com.opera.appstore.pages.constants;
 
 /**
  * Created with IntelliJ IDEA.

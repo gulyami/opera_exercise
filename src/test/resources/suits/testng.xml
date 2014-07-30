@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<suite name="opera_test">
+
+
+    <test name="opera_test">
+        <classes>
+            <class name="com.opera.tests.SimpleTest"/>
+        </classes>
+    </test>
+
+</suite>

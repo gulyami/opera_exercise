@@ -1,4 +1,4 @@
-package com.opera.test.common;
+package com.opera.appstore.common;
 
 import org.apache.commons.lang.RandomStringUtils;
 
