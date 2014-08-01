@@ -1,7 +1,10 @@
 package com.opera.configuration;
 
+import com.opera.appstore.common.FilesHandler;
+import com.opera.appstore.common.OperaConfig;
 import com.opera.appstore.common.WebDriverService;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,7 +22,6 @@ import java.lang.reflect.Method;
  * Time: 15:29
  * To change this template use File | Settings | File Templates.
  */
-@Component
 @ContextConfiguration(locations = {"classpath:context.xml"})
 public class BaseTest extends AbstractTestNGSpringContextTests {
 
@@ -27,6 +29,13 @@ public class BaseTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     protected WebDriverService webDriverService;
+
+    @Autowired
+    protected OperaConfig operaConfig;
+
+    @Autowired
+    protected FilesHandler filesHandler;
+
 
     private Long time;
 

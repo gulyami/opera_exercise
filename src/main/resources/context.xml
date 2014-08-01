@@ -2,12 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="com.opera.appstore"/>
+    <context:component-scan base-package="com.opera.appstore.*"/>
     <context:component-scan base-package="com.opera.configuration.*"/>
 
+
+    <util:properties id="properties" location="classpath:#{systemEnvironment['env']}.properties" />
+
+
+    <!--<bean id="webDriver" factory-bean="webDriverFactory" factory-method="getWebDriver"/>-->
 
 </beans>

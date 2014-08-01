@@ -9,10 +9,10 @@ package com.opera.appstore.common;
  */
 public class StaticData {
 
-    public final static Long TIMEOUT = 60L;
+    public static final Long TIMEOUT = 60L;
 
 
-    public enum TypeValues {
+    public static enum TypeValues {
         COMMERCIAL("Commercial (Buy only)"),
         SHAREWARE("Shareware (Try and Buy)"),
         FREEWARE("Freeware (Free)");
@@ -29,7 +29,7 @@ public class StaticData {
         }
     }
 
-    public enum PlatformValues {
+    public static enum PlatformValues {
         WINDOWS_MOBILE("Windows Mobile"),
         ANDROID("Android");
         //todo TBD add remaining values
@@ -45,7 +45,7 @@ public class StaticData {
         }
     }
 
-    public enum InstallerTypeValues {
+    public static enum InstallerTypeValues {
         DEVICE_INSTALLER("Device installer"),
         EBOOK("eBook");
         //todo TBD add remaining values
@@ -61,7 +61,7 @@ public class StaticData {
         }
     }
 
-    public enum VersionsValues {
+    public static enum VersionsValues {
         FULL("Full"),
         DEMO("Demo"),
         TRIAL("Trial");
@@ -78,7 +78,11 @@ public class StaticData {
         }
     }
 
-    public enum UploadType {
+    public static enum BrowserType {
+        FF, CHROME, IE
+    }
+
+    public static enum UploadType {
         IMAGE, THUMBNAIL, APK;
     }
 

@@ -1,13 +1,11 @@
 package com.opera.appstore.common;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import static com.opera.appstore.common.StaticData.BrowserType;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,65 +18,64 @@ import java.util.Properties;
 public class OperaConfig {
 
     private static final Logger logger = Logger.getLogger(OperaConfig.class);
+    private BrowserType browser;
+    private String fireFoxBrowserPath;
+    private String images;
+    private String url;
+    private String thumbNails;
+    private String apkPath;
+    private String password;
+    private String login;
 
-    public final static String BROWSER;
-    public final static String BROWSER_PATH;
-    public final static String IMAGES;
-    public final static String THUMBNAILS;
-    public final static String PASSWORD;
-    public final static String LOGIN;
-    public final static String URL;
-    public final static String APK;
-
-
-    static {
-        URL = getPropertyValue("app.url", "src\\main\\resources\\" + getSystemVariable("env") + ".properties");
-        BROWSER = getSystemVariable("browser");
-        BROWSER_PATH = getPropertyValue("browser.path", "src\\main\\resources\\" + getSystemVariable("env") + ".properties");
-        IMAGES = getPropertyValue("img.path", "src\\main\\resources\\" + getSystemVariable("env") + ".properties");
-        THUMBNAILS = getPropertyValue("thumb.path", "src\\main\\resources\\" + getSystemVariable("env") + ".properties");
-        PASSWORD = getPropertyValue("password", "src\\main\\resources\\" + getSystemVariable("env") + ".properties");
-        LOGIN = getPropertyValue("login", "src\\main\\resources\\" + getSystemVariable("env") + ".properties");
-        APK = getPropertyValue("apk.path", "src\\main\\resources\\" + getSystemVariable("env") + ".properties");
+    @Autowired
+    public OperaConfig(@Value("#{environment['browser'] }") String browser,
+                       @Value("#{properties['ff.browser.path']}") String browserPath,
+                       @Value("#{properties['img.path']}") String images,
+                       @Value("#{properties['app.url']}") String url,
+                       @Value("#{properties['apk.path']}") String apkPath,
+                       @Value("#{properties['thumb.path']}") String thumbNails,
+                       @Value("#{properties['password']}") String password,
+                       @Value("#{properties['login']}") String login
+    ) {
+        this.browser = BrowserType.valueOf(browser);
+        this.fireFoxBrowserPath = browserPath;
+        this.images = images;
+        this.url = url;
+        this.thumbNails = thumbNails;
+        this.apkPath = apkPath;
+        this.password = password;
+        this.login = login;
     }
 
-    private static String getPropertyValue(String value, String propertyFile) {
-        Properties prop = new Properties();
-        InputStream input = null;
-
-        prop = loadProperties(prop, input, propertyFile);
-        return prop.getProperty(value);
+    public BrowserType getBrowser() {
+        return browser;
     }
 
-    private static Properties loadProperties(Properties prop, InputStream input, String propertyFile) {
-        try {
-
-            input = new FileInputStream(propertyFile);
-            if (input == null) {
-                logger.info("Sorry, unable to find " + propertyFile);
-                throw new FileNotFoundException("Unable to load properties");
-            }
-            prop.load(input);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return prop;
+    public String getFireFoxBrowserPath() {
+        return fireFoxBrowserPath;
     }
 
-    private static String getSystemVariable(String key) {
-        String result = System.getenv(key);
-        if (result == null) {
-            result = System.getProperty("env");
-        }
-        return result;
+    public String getImages() {
+        return images;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getThumbNails() {
+        return thumbNails;
+    }
+
+    public String getApkPath() {
+        return apkPath;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getLogin() {
+        return login;
     }
 }

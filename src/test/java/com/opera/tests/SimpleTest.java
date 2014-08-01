@@ -1,17 +1,15 @@
 package com.opera.tests;
 
 import com.opera.appstore.common.FilesHandler;
+import com.opera.appstore.common.OperaConfig;
 import com.opera.appstore.common.StaticData;
+import com.opera.appstore.pages.AppOperaLoginPage;
 import com.opera.appstore.pages.ManageProductsPage;
 import com.opera.configuration.BaseTest;
-import com.opera.appstore.common.OperaConfig;
-import com.opera.appstore.pages.AppOperaLoginPage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 import java.io.File;
-
-import static com.opera.appstore.common.FilesHandler.getAllFilesFromFolder;
-import static com.opera.appstore.common.FilesHandler.getOneFileFromList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,15 +20,12 @@ import static com.opera.appstore.common.FilesHandler.getOneFileFromList;
  */
 public class SimpleTest extends BaseTest {
 
-
     @Test
     public void simpleTest() throws Exception {
 
-        webDriverService.initializeDriver();
+        webDriverService.getUrl(operaConfig.getUrl());
 
-        webDriverService.getUrl(OperaConfig.URL);
-
-        AppOperaLoginPage appOperaLoginPage = new AppOperaLoginPage(webDriverService.getDriver());
+        AppOperaLoginPage appOperaLoginPage = new AppOperaLoginPage(webDriverService.getDriver(), operaConfig);
 
         //login to application
         ManageProductsPage manageProductsPage = appOperaLoginPage.login();
@@ -47,15 +42,15 @@ public class SimpleTest extends BaseTest {
         //upload images
         manageProductsPage
                 .uploadFiles(
-                        getAllFilesFromFolder(new File(OperaConfig.IMAGES)), manageProductsPage
+                        filesHandler.getAllFilesFromFolder(new File(operaConfig.getImages())), manageProductsPage
                         .getUploadWebElement(), StaticData.UploadType.IMAGE);
 
         //resize uploaded images to thumbnails (preffered sixe 512x512)
-        FilesHandler.transformImages(new File(OperaConfig.IMAGES), 512, 512);
+        filesHandler.transformImages(new File(operaConfig.getImages()), 512, 512);
 
         //upload generated thumbnails .. here I've got a little miss understanding. I've thought that thumbnail can be loaded in the same way as images
         manageProductsPage.uploadFiles(
-                getOneFileFromList(getAllFilesFromFolder(new File(OperaConfig.THUMBNAILS))), manageProductsPage
+                filesHandler.getOneFileFromList(filesHandler.getAllFilesFromFolder(new File(operaConfig.getThumbNails()))), manageProductsPage
                 .getUploadThumbnails(), StaticData.UploadType.THUMBNAIL);
 
         // save and continue
@@ -66,7 +61,7 @@ public class SimpleTest extends BaseTest {
 
         //upload apk file
         manageProductsPage.uploadFiles(
-                getAllFilesFromFolder(new File(OperaConfig.APK)), manageProductsPage
+                filesHandler.getAllFilesFromFolder(new File(operaConfig.getApkPath())), manageProductsPage
                 .getUploadApk(), StaticData.UploadType.APK);
 
         //save build

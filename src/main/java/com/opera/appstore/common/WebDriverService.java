@@ -9,8 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 
 /**
@@ -20,42 +22,19 @@ import java.io.File;
  * Time: 13:41
  * To change this template use File | Settings | File Templates.
  */
+
 @Component
 public class WebDriverService {
 
     private static Logger logger = Logger.getLogger(WebDriverService.class);
+    @Autowired
+    private WebDriverFactory webDriverFactory;
 
     private WebDriver driver;
 
-    public WebDriver initializeDriver() {
-        if (OperaConfig.BROWSER.equals("FF")) {
-            //todo configure driver
-            FirefoxBinary binary = new FirefoxBinary(new File(OperaConfig.BROWSER_PATH));
-            FirefoxProfile profile = new FirefoxProfile();
-            driver = new FirefoxDriver(binary, profile);
-            driver.manage().window().maximize();
-            return driver;
-        } else if (OperaConfig.BROWSER.equals("IE")) {
-            //todo configure driver
-            driver = new InternetExplorerDriver();
-            driver.manage().window().maximize();
-            return driver;
-       /* } else if (OperaConfig.BROWSER.equals("OP")) {
-            //todo configure driver
-            driver = new OperaDriver();
-            driver.manage().window().maximize();
-            return driver;*/
-        } else if (OperaConfig.BROWSER.equals("CH")) {
-            //todo configure driver
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            return driver;
-        } else {
-            //todo configure driver
-            driver = new HtmlUnitDriver();
-            return driver;
-        }
-
+    @PostConstruct
+    private void initializeDriver() {
+        driver = webDriverFactory.getWebDriver();
     }
 
     public WebDriver getUrl(String url) {

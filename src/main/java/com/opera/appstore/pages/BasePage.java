@@ -1,5 +1,6 @@
 package com.opera.appstore.pages;
 
+import com.opera.appstore.common.OperaConfig;
 import com.opera.appstore.common.StaticData;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
@@ -10,6 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,7 @@ import java.util.List;
  * Time: 14:09
  * To change this template use File | Settings | File Templates.
  */
+
 public class BasePage {
 
     protected WebDriver driver;
@@ -29,6 +34,7 @@ public class BasePage {
 
     public BasePage() {
     }
+
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

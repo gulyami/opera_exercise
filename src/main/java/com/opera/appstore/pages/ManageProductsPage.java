@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.util.List;
@@ -27,6 +29,7 @@ import static com.opera.appstore.common.StaticData.VersionsValues.*;
  * Time: 20:52
  * To change this template use File | Settings | File Templates.
  */
+
 public class ManageProductsPage extends BasePage {
     private static Logger logger = Logger.getLogger(ManageProductsPage.class);
 

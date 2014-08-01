@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +18,10 @@ import org.openqa.selenium.support.How;
  * Time: 20:17
  * To change this template use File | Settings | File Templates.
  */
+
 public class AppOperaLoginPage extends BasePage {
+
+    private OperaConfig operaConfig;
 
     @FindBy(how = How.XPATH, xpath = AppOperaLoginPageConstants.LOGIN_INPUT_BOX)
     private WebElement loginInputBox;
@@ -34,8 +39,9 @@ public class AppOperaLoginPage extends BasePage {
     private WebElement forgotYourPasswordLink;
 
 
-    public AppOperaLoginPage(WebDriver driver) {
+    public AppOperaLoginPage(WebDriver driver,OperaConfig operaConfig) {
         super(driver);
+        this.operaConfig = operaConfig;
     }
 
     public void inputLogin(String login) {
@@ -48,8 +54,8 @@ public class AppOperaLoginPage extends BasePage {
 
 
     public ManageProductsPage login() {
-        inputLogin(OperaConfig.LOGIN);
-        inputPassword(OperaConfig.PASSWORD);
+        inputLogin(operaConfig.getLogin());
+        inputPassword(operaConfig.getPassword());
         clickOn(loginButton);
         //sorry for hard code had less time to make up a decision
         waitUntilDisplayed(this.driver, By.xpath(ManageProductsPageConstants.POPUP));
